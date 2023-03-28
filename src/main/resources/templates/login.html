@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title th:text="${title}">Login Page</title>
+	<link rel="stylesheet" th:href="@{/css/styleLogin.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<form>
+			<h1 class="logo">Logo</h1>
+			<h2 class="camera-dashboard">Camera Dashboard</h2>
+			<h2 class="login">Login</h2>
+			<p class="subtitle">enter your email and password below</p>
+			<a class="txt-email">EMAIL</a>
+			<input type="text" name="email" placeholder="enter your email address">
+
+			<div class="group-txtPassword-forgotPassword">
+				<a class="txt-password">PASSWORD</a>
+				<div class="forgot-password"><a href="#">forgot password</a></div>
+			</div>
+
+			<input type="password" name="password" placeholder="enter your password">
+
+			<button type="submit" class="login-btn">Login</button>
+			<div class="form-footer">
+				<div class="form-links">
+					<a href="#">Need help?</a>
+					<a href="#">Contact Support</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

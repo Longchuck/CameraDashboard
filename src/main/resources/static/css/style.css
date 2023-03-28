@@ -1,0 +1,121 @@
+.num-0-1-log-in {
+    background-color: rgba(54, 55, 64, 1);
+    padding: 139px 530px;
+    display: flex;
+    align-items: center;
+  }
+  .log-in-two {
+    width: calc(100% - 63px);
+    height: calc(100% - 93px);
+    background-color: var(--grayscale-white);
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 33px 31px 58px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--grayscale-divider);
+  }
+  .logo {
+    height: 54px;
+    width: 127px;
+    font-family: "Mulish";
+    font-size: 40px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--black);
+    display: flex;
+    margin-bottom: 32px;
+    margin-left: 96px;
+    letter-spacing: 0.4px;
+  }
+  .camera-dashboard {
+    width: calc(100% - 1px);
+    font-family: "Mulish";
+    font-size: 19px;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--sidebar-gray);
+    text-align: center;
+    margin-bottom: 12px;
+    opacity: 0.7;
+    letter-spacing: 0.4px;
+  }
+  .log-in {
+    width: calc(100% - 1px);
+    font-family: "Mulish";
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+    color: rgba(37, 39, 51, 1);
+    text-align: center;
+    margin-bottom: 12px;
+    margin-left: 1px;
+    letter-spacing: 0.3px;
+  }
+  .enter-your-email-and-password-below {
+    width: calc(100% - 1px);
+    font-family: "Mulish";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--grayscale-gray);
+    text-align: center;
+    margin-bottom: 48px;
+    margin-left: 1px;
+    letter-spacing: 0.3px;
+  }
+  .textfield-label-textfield-default {
+    margin-bottom: 24px;
+    margin-left: 1px;
+  }
+  .flex-wrapper-three {
+    margin-bottom: 24px;
+    margin-left: 1px;
+    position: relative;
+  }
+  .textfield-label-icon-default {
+    position: relative;
+  }
+  .forgot-password {
+    font-family: "Mulish";
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--grayscale-gray);
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    letter-spacing: 0.1px;
+  }
+  .button-contained-primary-default {
+    margin-bottom: 17px;
+    margin-left: 1px;
+  }
+  .help {
+    margin-left: 14px;
+    padding: 1px 0 0 3px;
+    display: flex;
+    align-items: center;
+  }
+  .need-help {
+    font-family: "Mulish";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    color: rgba(0, 0, 0, 0.88);
+    margin-right: 8px;
+    letter-spacing: 0.4px;
+  }
+  .contact-support {
+    height: 12px;
+    width: 97px;
+    font-family: "Mulish";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    color: var(--main-blue);
+    display: flex;
+    letter-spacing: 0.4px;
+  }
