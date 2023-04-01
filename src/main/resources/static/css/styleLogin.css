@@ -87,6 +87,7 @@ button[type="submit"] {
 	opacity: 0.5;
 	float: right;
 	text-align: center;
+	color: blue;
 }
 .txt-password, .forgot-password{
 	display: inline-block
