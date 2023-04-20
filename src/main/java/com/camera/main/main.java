@@ -1,4 +1,4 @@
-package com.virtualcam.main;
+package com.camera.main;
 
 
 import org.springframework.boot.SpringApplication;

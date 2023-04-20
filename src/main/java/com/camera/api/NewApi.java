@@ -1,4 +1,4 @@
-package com.virtualcam.api;
+package com.camera.api;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.virtualcam.entity.UserEntity;
+import com.camera.entity.UserEntity;
 
 @RestController
 public class NewApi {

@@ -1,26 +1,38 @@
-package com.virtualcam.entity;
+package com.camera.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "warning")
 public class WarningEntity {
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column
 	private String name;
+	@Column
 	private String serial;
+	@Column
 	private String content;
+	@Column
 	private String time_from;
+	@Column
 	private String time_to;
+	@Column
 	private String level;
+	@Column
 	private String face_image;
+	@Column
 	private String region_id;
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+
 	public String getName() {
 		return name;
 	}
