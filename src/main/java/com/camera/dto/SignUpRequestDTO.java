@@ -1,33 +1,11 @@
-package com.camera.entity;
+package com.camera.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-@Entity
-@Table(name = "user")
-public class UserEntity {
+public class SignUpRequestDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column
 	private String name;
-	@Column
 	private String userName;
-	@Column
 	private String email;
-	@Column
 	private String password;
-	
-	public Long getId() {
-		return id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -54,4 +32,5 @@ public class UserEntity {
 	}
 	
 	
+
 }

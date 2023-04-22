@@ -41,9 +41,9 @@
 			<version>${mysql.version}</version> <!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
-			<groupId>com.github.alexdlaird</groupId>
-			<artifactId>java8-ngrok</artifactId>
-			<version>1.4.5</version>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 	</dependencies>
 
