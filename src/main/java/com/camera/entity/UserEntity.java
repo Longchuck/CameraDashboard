@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user")
@@ -16,12 +17,15 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
-	private String name;
+	private String name = null;
 	@Column
+	@NotNull
 	private String userName;
 	@Column
+	@NotNull
 	private String email;
 	@Column
+	@NotNull
 	private String password;
 	
 	public Long getId() {

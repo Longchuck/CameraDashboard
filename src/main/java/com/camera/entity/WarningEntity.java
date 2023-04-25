@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "warning")
@@ -14,21 +15,22 @@ public class WarningEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
-	private String name;
+	private String name = null;
 	@Column
+	@NotNull
 	private String serial;
 	@Column
-	private String content;
+	private String content = null;
 	@Column
-	private String time_from;
+	private String time_from = null;
 	@Column
-	private String time_to;
+	private String time_to = null;
 	@Column
-	private String level;
+	private String level = null;
 	@Column
-	private String face_image;
+	private String face_image = null;
 	@Column
-	private String region_id;
+	private String region_id = null;
 	public Long getId() {
 		return id;
 	}

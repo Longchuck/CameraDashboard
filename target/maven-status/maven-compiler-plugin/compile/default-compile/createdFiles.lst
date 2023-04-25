@@ -1,2 +1,13 @@
-com\virtualcam\controller\ObsController.class
-com\virtualcam\main\main.class
+com\camera\controller\LoginController.class
+com\camera\entity\UserEntity.class
+com\camera\api\NewApi.class
+com\camera\dto\LoginRequestDTO.class
+com\camera\dto\SignUpRequestDTO.class
+com\camera\common\APIResponse.class
+com\camera\entity\CameraEntity.class
+com\camera\entity\WarningEntity.class
+com\camera\main.class
+com\camera\repo\UserRepository.class
+com\camera\util\JwtUtils.class
+com\camera\service\LoginService.class
+com\camera\entity\RegionEntity.class

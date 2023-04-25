@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cameras")
@@ -14,16 +15,28 @@ public class CameraEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
+	@NotNull
 	private String serial;
 	@Column
-	private String home_id;
+	private String home_id = null;
 	@Column
+	@NotNull
 	private String url;
 	@Column
-	private String connection;	
+	private String connection = null;	
 	@Column
-	private String security_level;
+	private String security_level = null;
+	@Column
+	private String status = null;
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Long getId() {
 		return id;
 	}
