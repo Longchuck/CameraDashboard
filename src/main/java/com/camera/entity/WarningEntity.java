@@ -16,7 +16,7 @@ public class WarningEntity {
 	private Long id;
 	@Column
 	private String name = null;
-	@Column
+	@Column(unique = true)
 	@NotNull
 	private String serial;
 	@Column

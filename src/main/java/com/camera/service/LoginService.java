@@ -20,6 +20,7 @@ public class LoginService {
     @Autowired
     private JwtUtils jwtUtils;
     
+    
     public APIResponse signUp(SignUpRequestDTO signUpRequestDTO) {
         APIResponse apiResponse = new APIResponse();
 
@@ -46,14 +47,16 @@ public class LoginService {
         // return
         return apiResponse;
     }
+    
     public APIResponse login(LoginRequestDTO loginRequestDTO) {
 
         APIResponse apiResponse = new APIResponse();
 
+
         // validation
 
         // verify UserEntity exist with given email and password
-        UserEntity userEntity = userRepository.findOneByUserNameIgnoreCaseAndPassword(loginRequestDTO.getUserName(), loginRequestDTO.getPassword());
+        UserEntity userEntity = userRepository.findOneByEmailIgnoreCaseAndPassword(loginRequestDTO.getEmail(), loginRequestDTO.getPassword());
 
         // response
         if(userEntity == null){
@@ -63,6 +66,8 @@ public class LoginService {
 
         // generate jwt
         String token = jwtUtils.generateJwt(userEntity);
+//        RefreshToken refreshToken = refreshTokenService.createRefreshToken(userEntity.getId());
+
 
         Map<String , Object> data = new HashMap<>();
         data.put("accessToken", token);
@@ -71,5 +76,8 @@ public class LoginService {
 
         return apiResponse;
     }
+    
+
+
 
 }

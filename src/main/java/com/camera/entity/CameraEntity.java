@@ -14,7 +14,7 @@ public class CameraEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column
+	@Column(unique = true)
 	@NotNull
 	private String serial;
 	@Column
@@ -22,10 +22,6 @@ public class CameraEntity {
 	@Column
 	@NotNull
 	private String url;
-	@Column
-	private String connection = null;	
-	@Column
-	private String security_level = null;
 	@Column
 	private String status = null;
 	
@@ -58,18 +54,6 @@ public class CameraEntity {
 	}
 	public void setUrl(String url) {
 		this.url = url;
-	}
-	public String getConnection() {
-		return connection;
-	}
-	public void setConnection(String connection) {
-		this.connection = connection;
-	}
-	public String getSecurity_level() {
-		return security_level;
-	}
-	public void setSecurity_level(String security_level) {
-		this.security_level = security_level;
 	}
 	
 }
