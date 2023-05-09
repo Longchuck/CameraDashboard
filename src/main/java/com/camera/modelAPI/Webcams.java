@@ -6,6 +6,13 @@ public class Webcams {
 	private String title;
 	private Location location;
 	private Url url;
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getId() {
 		return id;
 	}

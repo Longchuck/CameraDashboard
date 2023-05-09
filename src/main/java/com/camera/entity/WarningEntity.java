@@ -2,9 +2,12 @@ package com.camera.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -16,9 +19,10 @@ public class WarningEntity {
 	private Long id;
 	@Column
 	private String name = null;
-	@Column(unique = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "camera_id", referencedColumnName = "serial")
 	@NotNull
-	private String serial;
+	private CameraEntity camera;
 	@Column
 	private String content = null;
 	@Column
@@ -31,6 +35,20 @@ public class WarningEntity {
 	private String face_image = null;
 	@Column
 	private String region_id = null;
+	
+
+	public CameraEntity getCamera() {
+		return camera;
+	}
+
+	public void setCamera(CameraEntity camera) {
+		this.camera = camera;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -40,12 +58,6 @@ public class WarningEntity {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getSerial() {
-		return serial;
-	}
-	public void setSerial(String serial) {
-		this.serial = serial;
 	}
 	public String getContent() {
 		return content;

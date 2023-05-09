@@ -9,5 +9,6 @@ import com.camera.entity.CameraEntity;
 
 @Repository
 public interface CameraRepository extends JpaRepository<CameraEntity, String>{
-	List<CameraEntity> findAll();
+	public List<CameraEntity> findAll();
+	public List<CameraEntity> findByRegionId(Long regionId);
 }

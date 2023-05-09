@@ -2,11 +2,16 @@ package com.camera.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "cameras")
@@ -17,6 +22,11 @@ public class CameraEntity {
 	@Column(unique = true)
 	@NotNull
 	private String serial;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@NotNull
+	private RegionEntity region;
 	@Column
 	private String home_id = null;
 	@Column
@@ -25,6 +35,19 @@ public class CameraEntity {
 	@Column
 	private String status = null;
 	
+	
+	public RegionEntity getRegion() {
+		return region;
+	}
+
+	public void setRegion(RegionEntity region) {
+		this.region = region;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getStatus() {
 		return status;
 	}

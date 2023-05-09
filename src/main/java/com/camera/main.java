@@ -12,21 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class main extends SpringBootServletInitializer {
-	
 	@GetMapping("/")
 	public String home() {
 		return "home ne";
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(main.class, args);
-
 	}
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		// TODO Auto-generated method stub
 		return builder.sources(main.class);
 	}
-	
-	
-
 }
