@@ -6,10 +6,14 @@ com\camera\controller\CameraController.class
 com\camera\modelAPI\Location.class
 com\camera\security\jwt\AuthEntryPointJwt.class
 com\camera\modelAPI\Daylight.class
+com\camera\modelAPI\User.class
 com\camera\dto\TokenDTO.class
 com\camera\response\TokenRefreshResponse.class
+com\camera\dto\ThongKeDTO.class
 com\camera\entity\CameraEntity.class
+com\camera\controller\RegionController.class
 com\camera\modelAPI\Url.class
+com\camera\repo\WarningRepository.class
 com\camera\request\TokenRefreshRequest.class
 com\camera\main.class
 com\camera\security\jwt\AuthTokenFilter.class
@@ -30,9 +34,11 @@ com\camera\repo\RefreshTokenRepository.class
 com\camera\security\WebsecurityConfig.class
 com\camera\common\APIResponse.class
 com\camera\modelAPI\Current.class
+com\camera\modelAPI\AuthEntryErrModel.class
 com\camera\entity\WarningEntity.class
 com\camera\modelAPI\Result.class
 com\camera\repo\UserRepository.class
 com\camera\entity\RefreshToken.class
+com\camera\repo\RegionRepository.class
 com\camera\security\service\UserDetailsServiceImpl.class
 com\camera\entity\RegionEntity.class

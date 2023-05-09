@@ -2,8 +2,6 @@ package com.camera.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +12,8 @@ import com.camera.entity.UserEntity;
 import com.camera.map.UserMapper;
 import com.camera.repo.UserRepository;
 import com.camera.security.jwt.JwtUtils;
-import com.camera.security.service.UserDetailsImpl;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class UserController {
@@ -26,6 +25,7 @@ public class UserController {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@ApiOperation(value = "Get all users", notes = "Returns a list of all users by accessToken")
 	@PostMapping("/user-profile")
 	public ResponseEntity<UserDTO> getUserByUserName(@RequestBody TokenDTO tokenDTO){
 		String userName = jwtUtils.getUserNameFromJwtToken(tokenDTO.getAccessToken());
