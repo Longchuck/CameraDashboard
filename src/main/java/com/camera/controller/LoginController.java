@@ -101,24 +101,21 @@ public class LoginController {
 
 	@PostMapping("/sign-out")
 	@ApiOperation(value = "Log out API", notes = "log out by Authorization, type: Baerer token. ")
-	@ApiResponses(value = {
-	        @ApiResponse(code = 200, message = "The user was successfully logged out"),
-	        @ApiResponse(code = 401, message = "The user is not authenticated"),
-	        @ApiResponse(code = 500, message = "An internal server error occurred while attempting to log out the user")
-	})
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "The user was successfully logged out"),
+			@ApiResponse(code = 401, message = "The user is not authenticated"),
+			@ApiResponse(code = 500, message = "An internal server error occurred while attempting to log out the user") })
 	public ResponseEntity<?> logoutUser() {
-		System.out.println("Authenticatino: " + SecurityContextHolder.getContext().getAuthentication());
 		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-
 		Long userId = userDetails.getId();
 		refreshTokenService.deleteByUserId(userId);
-
+		SecurityContextHolder.clearContext();
 		return ResponseEntity.ok("Log out successful!");
+
 	}
 
 	@PostMapping("/refresh-token")
-	@ApiResponses(value = { 
+	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Refresh token success", response = TokenRefreshResponse.class),
 			@ApiResponse(code = 404, message = "Refresh token is not in database!") })
 	public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
@@ -126,10 +123,8 @@ public class LoginController {
 		if (refreshTokenService.findByToken(requestRefreshToken) == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Refresh token is not in database!");
 
-		return refreshTokenService.findByToken(requestRefreshToken)
-				.map(refreshTokenService::verifyExpiration)
-				.map(RefreshToken::getUser)
-				.map(user -> {
+		return refreshTokenService.findByToken(requestRefreshToken).map(refreshTokenService::verifyExpiration)
+				.map(RefreshToken::getUser).map(user -> {
 					String token = jwtUtils.generateTokenFromUserName(user.getUserName());
 					return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
 				}).orElseThrow(() -> new TokenRefreshException(requestRefreshToken, "FORBIDDEN"));

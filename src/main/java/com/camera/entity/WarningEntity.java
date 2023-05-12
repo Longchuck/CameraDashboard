@@ -11,16 +11,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "warning")
-public class WarningEntity {
+public class WarningEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
 	private String name = null;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "camera_id", referencedColumnName = "serial")
+	@JoinColumn(name = "camera_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@NotNull
 	private CameraEntity camera;
 	@Column
@@ -33,8 +36,11 @@ public class WarningEntity {
 	private String level = null;
 	@Column
 	private String face_image = null;
-	@Column
-	private String region_id = null;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "region_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@NotNull
+	private RegionEntity region_id;
 	
 
 	public CameraEntity getCamera() {
@@ -89,12 +95,12 @@ public class WarningEntity {
 	public void setFace_image(String face_image) {
 		this.face_image = face_image;
 	}
-	public String getRegion_id() {
+
+	public RegionEntity getRegion_id() {
 		return region_id;
 	}
-	public void setRegion_id(String region_id) {
+
+	public void setRegion_id(RegionEntity region_id) {
 		this.region_id = region_id;
 	}
-	
-	
 }

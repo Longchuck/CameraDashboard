@@ -11,13 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.camera.security.service.UserDetailsImpl;
 import com.camera.security.service.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
@@ -35,7 +35,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		try {
 			String jwt = parseJwt(request);
 //			System.out.println("longnehahahahahaha---------"+jwt);
-			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+			if (jwtUtils.validateJwtToken(jwt)) {
 //				System.out.println("sign--in"+jwt);
 				String userName = jwtUtils.getUserNameFromJwtToken(jwt);
 				UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
@@ -44,13 +44,15 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 						userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				
-				UserDetailsImpl userDetails2 = (UserDetailsImpl) authentication.getPrincipal();
-			    System.out.println("Email: "+userDetails2.getEmail());
+				//UserDetailsImpl userDetails2 = (UserDetailsImpl) authentication.getPrincipal();
+//				JwtUtils jwtUtils = new JwtUtils();
+//			    System.out.println("authentication: "+jwtUtils.verify(jwt));
 				
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
+
 		} catch (Exception e) {
-			System.out.println("Email123");
+//			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
 			logger.error("Cannot set user authentication: {}", e.getMessage());
 		}
 
@@ -60,10 +62,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	private String parseJwt(HttpServletRequest request) {
 		String headerAuth = request.getHeader("Authorization");
 		
-//		System.out.println("headderAuth ne kj: "+headerAuth);
+		System.out.println("headderAuth ne kj: "+headerAuth);
 		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
 			return headerAuth.substring(7, headerAuth.length());
 		}
 		return null;
 	}
+
+
 }
