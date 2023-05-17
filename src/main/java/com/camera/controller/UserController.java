@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camera.dto.TokenDTO;
@@ -17,6 +18,7 @@ import com.camera.security.jwt.JwtUtils;
 import com.camera.security.service.UserDetailsImpl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -34,7 +36,9 @@ public class UserController {
 			@ApiResponse(code = 409, message = "409 conflict: User address already exists"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error: Error occurred while registering user") })
 	@PostMapping("/user-profile")
-	public ResponseEntity<?> getUserByUserName() {
+	public ResponseEntity<?> getUserByUserName(
+			@ApiParam(value = "Authorization Token", required = true, defaultValue = "Bearer {access_token}") 
+			@RequestHeader(name = "Authorization") String authorizationHeader) {
 		try {
 			UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();

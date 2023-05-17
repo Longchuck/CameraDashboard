@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,6 +28,7 @@ import com.camera.security.jwt.AuthTokenFilter;
 import com.camera.security.jwt.JwtUtils;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -70,9 +72,9 @@ public class CameraController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "access token valid!"),
 			@ApiResponse(code = 401, message = "401: UNAUTHORIZED"), @ApiResponse(code = 409, message = "409 conflict"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error") })
-	public ResponseEntity<?> getCamera() {
-//		System.out.println("abc:"+SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-
+	public ResponseEntity<?> getCamera(
+			@ApiParam(value = "Authorization Token", required = true, defaultValue = "Bearer {access_token}") 
+			@RequestHeader(name = "Authorization") String authorizationHeader) {
 		return ResponseEntity.ok(cameraRepository.findAll());
 	}
 
@@ -83,7 +85,8 @@ public class CameraController {
 			cameraRepository.delete(cameraRepository.findById(id));
 			return ResponseEntity.status(HttpStatus.OK).body("delete cameras success!!");
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found id cameras or delete warning first" + id);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("not found id cameras or delete warning first" + id);
 		}
 	}
 
@@ -91,34 +94,39 @@ public class CameraController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "access token valid!"),
 			@ApiResponse(code = 409, message = "409 conflict"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error") })
-	public ResponseEntity<?> getWarning() {
+	public ResponseEntity<?> getWarning(
+			@ApiParam(value = "Authorization Token", required = true, defaultValue = "Bearer {access_token}") 
+			@RequestHeader(name = "Authorization") String authorizationHeader) {
 
 		return ResponseEntity.ok(warningRepository.findAll());
 	}
-	
+
 	@DeleteMapping("/warning/{id}")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "access token valid!"),
 			@ApiResponse(code = 409, message = "409 conflict"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error") })
 	public ResponseEntity<?> deleteWarning(@PathVariable("id") Long id) {
-	    try {
-	        warningRepository.delete(warningRepository.findById(id));
-	        return ResponseEntity.status(HttpStatus.OK).body("delete warning success!!");
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("delete warning unsuccess!!");
-	    }
+		try {
+			warningRepository.delete(warningRepository.findById(id));
+			return ResponseEntity.status(HttpStatus.OK).body("delete warning success!!");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("delete warning unsuccess!!");
+		}
 	}
-	
+
 	@GetMapping("/warning/{id}")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "access token valid!"),
 			@ApiResponse(code = 409, message = "409 conflict"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error") })
-	public ResponseEntity<?> getWarning(@PathVariable("id") Long id) {
-	    try {
-	        return ResponseEntity.status(HttpStatus.OK).body(warningRepository.findById(id));
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("no found warning!!");
-	    }
+	public ResponseEntity<?> getWarning(
+			@PathVariable("id") Long id,
+			@ApiParam(value = "Authorization Token", required = true, defaultValue = "Bearer {access_token}") 
+			@RequestHeader(name = "Authorization") String authorizationHeader) {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(warningRepository.findById(id));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("no found warning!!");
+		}
 	}
 
 	@ApiOperation(value = "Get thong-ke API", notes = "Get all profile from database")
@@ -127,7 +135,8 @@ public class CameraController {
 			@ApiResponse(code = 409, message = "409 conflict: User address already exists"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error: Error occurred while registering user") })
 	@GetMapping("/thong-ke")
-	public ResponseEntity<?> getThongKe() {
+	public ResponseEntity<?> getThongKe(
+			@ApiParam(value = "Authorization Token", required = true, defaultValue = "Bearer {access_token}") @RequestHeader(name = "Authorization") String authorizationHeader) {
 		SecurityContextHolder.getContext().getAuthentication();
 		List<ThongKeDTO> thongKeDTO = new ArrayList<ThongKeDTO>();
 		ThongKeDTO temp;

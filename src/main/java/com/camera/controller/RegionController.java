@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +22,7 @@ import com.camera.repo.UserRepository;
 import com.camera.security.jwt.JwtUtils;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -67,7 +69,9 @@ public class RegionController {
 			@ApiResponse(code = 409, message = "409 conflict: User address already exists"),
 			@ApiResponse(code = 500, message = "500 Internal Server Error: Error occurred while registering user") })
 	@GetMapping("/regions")
-	public ResponseEntity<?> getCamera() {
+	public ResponseEntity<?> getCamera(
+			@ApiParam(value = "Authorization Token", required = true, defaultValue = "Bearer {access_token}") 
+			@RequestHeader(name = "Authorization") String authorizationHeader) {
 		SecurityContextHolder.getContext().getAuthentication();
 		return ResponseEntity.ok(regionRepository.findAll());
 	}
